@@ -17,16 +17,11 @@ public class DaoImpl implements Dao {
         list.add(new Car("bmv","x6",222));
         list.add(new Car("bmv","x7",333));
     }
-
-    public List<Car> getAllCars() {
-        return this.list;
-    }
-    public List<Car> getCars(int num) {
-        List<Car> cars = this.list;
-        while (num < cars.size()) {
-            cars.remove(--num);
-            num++;
+    public List<Car> getCars(Integer num) {
+        if (num == null) {
+            return this.list;
+        } else {
+            return this.list.stream().limit(num).toList();
         }
-        return cars;
     }
 }
